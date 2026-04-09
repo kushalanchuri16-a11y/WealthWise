@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WealthWise | Stocks & Budgeting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1830;
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #f5f7fb;
+      --muted: #b8c3d9;
+      --blue: #4ea1ff;
+      --blue2: #7c5cff;
+      --green: #38d39f;
+      --glow: 0 0 40px rgba(78, 161, 255, 0.18);
+      --radius: 22px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(78,161,255,0.18), transparent 22%),
+        radial-gradient(circle at 85% 18%, rgba(124,92,255,0.18), transparent 20%),
+        radial-gradient(circle at 70% 75%, rgba(56,211,159,0.14), transparent 18%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: -1;
+      opacity: 0.35;
+    }
+
+    body::before {
+      background: var(--blue);
+      top: -80px;
+      left: -80px;
+    }
+
+    body::after {
+      background: var(--blue2);
+      right: -80px;
+      top: 120px;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 17, 31, 0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.96rem;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      box-shadow: var(--glow);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-btn:hover,
+    .primary-btn:hover,
+    .secondary-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      padding: 90px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: #d7e2f3;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 5vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(90deg, #ffffff, #8fd0ff, #7c5cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 580px;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .primary-btn {
+      color: white;
+      background: linear-gradient(90deg, var(--blue), var(--blue2));
+      box-shadow: var(--glow);
+    }
+
+    .secondary-btn {
+      color: white;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .hero-stats div h3 {
+      font-size: 1.45rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-stats div p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .dashboard {
+      position: relative;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius);
+      box-shadow: var(--glow);
+    }
+
+    .main-panel {
+      padding: 24px;
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .panel-top h4 {
+      font-size: 1rem;
+      color: #e9effc;
+    }
+
+    .mini-tag {
+      color: #cfe2ff;
+      background: rgba(78,161,255,0.12);
+      border: 1px solid rgba(78,161,255,0.22);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+
+    .chart {
+      height: 180px;
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        rgba(255,255,255,0.03);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 20px;
+    }
+
+    .chart svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .budget-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .budget-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .budget-card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+    }
+
+    .budget-card h5 {
+      font-size: 1.2rem;
+    }
+
+    .floating-card {
+      position: absolute;
+      right: -18px;
+      bottom: -25px;
+      width: 220px;
+      padding: 18px;
+    }
+
+    .floating-card h5 {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.09);
+      overflow: hidden;
+      margin: 12px 0 10px;
+    }
+
+    .progress-fill {
+      width: 72%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+      border-radius: 999px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-header span {
+      color: #8ec7ff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 0.8rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-top: 12px;
+      margin-bottom: 14px;
+      letter-spacing: -1.3px;
+    }
+
+    .section-header p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .features-grid,
+    .steps-grid,
+    .testimonials-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feature-card,
+    .step-card,
+    .testimonial {
+      padding: 28px;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(18px);
+      transition: 0.25s ease;
+    }
+
+    .feature-card:hover,
+    .step-card:hover,
+    .testimonial:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glow);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, rgba(78,161,255,0.18), rgba(124,92,255,0.18));
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature-card h3,
+    .step-card h3,
+    .testimonial h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p,
+    .step-card p,
+    .testimonial p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.96rem;
+    }
+
+    .step-number {
+      display: inline-block;
+      margin-bottom: 16px;
+      font-weight: 800;
+      color: #8fcfff;
+      font-size: 0.95rem;
+    }
+
+    .why-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .why-box {
+      padding: 30px;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+    }
+
+    .why-box h3 {
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+
+    .why-box p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .why-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .why-list li {
+      color: #d9e6f7;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .cta {
+      text-align: center;
+      padding: 40px;
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(78,161,255,0.16), rgba(124,92,255,0.12)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--glow);
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .why-section,
+      .features-grid,
+      .steps-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-card {
+        position: static;
+        width: 100%;
+        margin-top: 18px;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
+      .dashboard {
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        gap: 18px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .budget-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Wealth<span>Wise</span></div>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+        <a href="#start" class="nav-btn">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">
+            <span class="dot"></span>
+            Smart financial learning for beginners
+          </div>
+
+          <h1>
+            Learn stocks.
+            <span class="gradient-text">Budget better.</span>
+            Build confidence.
+          </h1>
+
+          <p>
+            WealthWise is a modern platform that helps students and beginners understand stock investing,
+            budgeting, and saving through simple tools, clear lessons, and realistic money habits.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#start" class="primary-btn">Start Learning</a>
+            <a href="#features" class="secondary-btn">Explore Features</a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <h3>10K+</h3>
+              <p>student learners</p>
+            </div>
+            <div>
+              <h3>3 Core</h3>
+              <p>money skills covered</p>
+            </div>
+            <div>
+              <h3>Beginner</h3>
+              <p>friendly tools</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard">
+          <div class="panel main-panel">
+            <div class="panel-top">
+              <h4>Personal Finance Overview</h4>
+              <div class="mini-tag">Live Growth</div>
+            </div>
+
+            <div class="chart">
+              <svg viewBox="0 0 500 200" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#38d39f"/>
+                    <stop offset="100%" stop-color="#4ea1ff"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 170 C60 155, 85 120, 140 130 S240 85, 290 95 S360 55, 420 65 S470 35, 500 28"
+                      fill="none" stroke="url(#lineGlow)" stroke-width="5" stroke-linecap="round"/>
+                <path d="M0 170 C60 155, 85 120, 140 130 S240 85, 290 95 S360 55, 420 65 S470 35, 500 28 L500 200 L0 200 Z"
+                      fill="rgba(78,161,255,0.10)"/>
+              </svg>
+            </div>
+
+            <div class="budget-grid">
+              <div class="budget-card">
+                <p>Monthly Budget</p>
+                <h5>$1,250</h5>
+              </div>
+              <div class="budget-card">
+                <p>Savings Rate</p>
+                <h5>28%</h5>
+              </div>
+              <div class="budget-card">
+                <p>Invested This Month</p>
+                <h5>$320</h5>
+              </div>
+              <div class="budget-card">
+                <p>Goal Progress</p>
+                <h5>72%</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel floating-card">
+            <h5>Emergency Fund</h5>
+            <p style="color: var(--muted); font-size: 0.9rem;">Goal: $2,000</p>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <p style="font-size: 0.92rem;">$1,440 saved so far</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span>Features</span>
+          <h2>Everything beginners need to build money skills</h2>
+          <p>
+            WealthWise combines investing basics, practical budgeting, and savings tools into one
+            easy-to-understand experience designed for students and first-time learners.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="icon">📈</div>
+            <h3>Stock Market Basics</h3>
+            <p>
+              Learn what stocks are, how investing works, and how long-term growth can help build wealth
+              over time without confusing financial jargon.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">💳</div>
+            <h3>Budget Planner</h3>
+            <p>
+              Understand income, spending, and saving with simple monthly budget tools that help users make
+              smarter everyday financial decisions.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🎯</div>
+            <h3>Savings Goals</h3>
+            <p>
+              Track progress toward important goals like college, a car, travel, or emergency savings with
+              motivating milestone-based planning.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-header">
+          <span>How It Works</span>
+          <h2>Three simple steps to stronger financial habits</h2>
+          <p>
+            The platform keeps things clear and practical so beginners can understand money without feeling overwhelmed.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">Step 01</div>
+            <h3>Learn the basics</h3>
+            <p>
+              Start with simple lessons on stocks, budgeting, saving, and financial responsibility.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">Step 02</div>
+            <h3>Practice with tools</h3>
+            <p>
+              Use budget examples, savings trackers, and investing scenarios to apply what you learn.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">Step 03</div>
+            <h3>Build confidence</h3>
+            <p>
+              Grow real-world money habits that help you make smarter choices now and in the future.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container why-section">
+        <div class="why-box">
+          <h3>Why financial education matters early</h3>
+          <p>
+            Many students learn advanced school subjects before they ever learn how to manage money.
+            WealthWise helps close that gap by making personal finance feel modern, approachable, and useful.
+          </p>
+          <p>
+            Instead of overwhelming users with technical language, the platform focuses on everyday money
+            decisions: budgeting, investing carefully, and setting realistic goals.
+          </p>
+        </div>
+
+        <div class="why-box">
+          <h3>Why choose WealthWise</h3>
+          <ul class="why-list">
+            <li>Beginner-friendly design with clear financial concepts</li>
+            <li>Balanced focus on stocks, budgeting, and saving</li>
+            <li>Modern startup feel without being too complicated</li>
+            <li>Built for students and young adults starting early</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-header">
+          <span>Reviews</span>
+          <h2>What students are saying</h2>
+          <p>
+            These sample reviews help give the site a real startup-business feel for your project.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <h3>“Easy to understand”</h3>
+            <p>
+              “I used to think investing was way too confusing, but this made it feel simple and actually useful.”
+            </p>
+          </div>
+
+          <div class="testimonial">
+            <h3>“Helped me budget better”</h3>
+            <p>
+              “The budgeting part was my favorite because it showed how small spending habits affect bigger goals.”
+            </p>
+          </div>
+
+          <div class="testimonial">
+            <h3>“Feels modern and helpful”</h3>
+            <p>
+              “It feels like a real finance app, but it’s still beginner-friendly for students just getting started.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="cta">
+          <h2>Start building smarter money habits today</h2>
+          <p>
+            Learn how to invest in stocks, create a better budget, and set savings goals with a platform
+            designed to make financial growth feel clear, modern, and possible.
+          </p>
+          <a href="#" class="primary-btn">Join WealthWise</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 WealthWise. Designed for a student business website project.
+    </div>
+  </footer>
+
+</body>
+</html>
