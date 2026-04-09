@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WealthWise | Build Smarter Money Habits</title>
+  <title>WealthWise | Build Better Money Habits</title>
   <style>
     :root{
-      --bg:#08111f;
-      --bg-2:#0d1a2d;
+      --bg:#07111d;
+      --bg2:#0b1830;
       --card:rgba(255,255,255,0.08);
-      --card-strong:rgba(255,255,255,0.12);
+      --card2:rgba(255,255,255,0.11);
+      --line:rgba(255,255,255,0.10);
       --text:#eef4ff;
-      --muted:#9eb0d1;
-      --line:rgba(255,255,255,0.12);
-      --accent:#6ea8ff;
-      --accent-2:#74f0c2;
-      --gold:#ffd56b;
-      --danger:#ff7d7d;
+      --muted:#9db0d4;
+      --accent:#73a9ff;
+      --accent2:#71f0c1;
+      --gold:#ffd66e;
+      --danger:#ff8b8b;
       --shadow:0 18px 45px rgba(0,0,0,0.32);
-      --radius:22px;
+      --radius:24px;
     }
 
     *{box-sizing:border-box}
@@ -26,30 +26,26 @@
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(110,168,255,0.24), transparent 32%),
-        radial-gradient(circle at top right, rgba(116,240,194,0.18), transparent 25%),
-        linear-gradient(180deg, #091120 0%, #07111d 100%);
       color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(115,169,255,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(113,240,193,0.15), transparent 24%),
+        linear-gradient(180deg,var(--bg),#08111f 100%);
       min-height:100vh;
+      overflow-x:hidden;
     }
 
     a{text-decoration:none;color:inherit}
-    button,input,select{
-      font:inherit;
-    }
-
-    .container{
-      width:min(1160px, calc(100% - 32px));
-      margin:auto;
-    }
+    button,input,select,textarea{font:inherit}
+    .container{width:min(1180px,calc(100% - 32px));margin:auto}
+    .hide{display:none !important}
 
     .topbar{
       position:sticky;
       top:0;
       z-index:1000;
-      backdrop-filter: blur(14px);
-      background:rgba(6,12,22,0.74);
+      backdrop-filter:blur(14px);
+      background:rgba(7,13,25,0.72);
       border-bottom:1px solid rgba(255,255,255,0.07);
     }
 
@@ -57,8 +53,8 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:16px;
       padding:16px 0;
-      gap:18px;
     }
 
     .brand{
@@ -66,33 +62,32 @@
       align-items:center;
       gap:12px;
       font-weight:800;
-      letter-spacing:.2px;
     }
 
     .brand-badge{
-      width:42px;
-      height:42px;
-      border-radius:14px;
+      width:44px;
+      height:44px;
+      border-radius:15px;
       display:grid;
       place-items:center;
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      color:#05131f;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#06111b;
       font-weight:900;
       box-shadow:var(--shadow);
     }
 
     .nav-links{
       display:flex;
-      align-items:center;
       gap:22px;
       color:var(--muted);
-      font-size:0.96rem;
+      font-size:.95rem;
+      align-items:center;
     }
 
     .nav-actions{
       display:flex;
-      align-items:center;
       gap:12px;
+      align-items:center;
     }
 
     .btn{
@@ -100,39 +95,34 @@
       border-radius:14px;
       padding:12px 18px;
       cursor:pointer;
-      transition:transform .18s ease, opacity .18s ease, background .18s ease;
+      transition:.2s ease;
       font-weight:700;
     }
 
-    .btn:hover{
-      transform:translateY(-1px);
-    }
-
+    .btn:hover{transform:translateY(-1px)}
     .btn-primary{
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      color:#07131f;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#06121a;
       box-shadow:var(--shadow);
     }
-
     .btn-secondary{
       background:rgba(255,255,255,0.08);
       color:var(--text);
       border:1px solid rgba(255,255,255,0.1);
     }
-
     .btn-ghost{
       background:transparent;
       color:var(--muted);
-      border:1px solid rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.09);
     }
 
     .hero{
-      padding:76px 0 44px;
+      padding:76px 0 42px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:1.08fr .92fr;
       gap:28px;
       align-items:center;
     }
@@ -143,40 +133,39 @@
       gap:8px;
       padding:9px 14px;
       border-radius:999px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.1);
-      color:var(--accent-2);
-      font-size:.9rem;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.09);
+      color:var(--accent2);
       margin-bottom:16px;
+      font-size:.92rem;
     }
 
     h1{
-      font-size:clamp(2.3rem, 5vw, 4.3rem);
-      line-height:1.04;
       margin:0 0 16px;
+      font-size:clamp(2.4rem,5vw,4.4rem);
+      line-height:1.03;
       letter-spacing:-1.7px;
     }
 
     .hero p{
       color:var(--muted);
-      font-size:1.08rem;
-      line-height:1.7;
+      font-size:1.06rem;
+      line-height:1.72;
+      max-width:60ch;
       margin:0 0 24px;
-      max-width:58ch;
     }
 
     .hero-cta{
       display:flex;
-      flex-wrap:wrap;
       gap:12px;
-      margin-bottom:24px;
+      flex-wrap:wrap;
+      margin-bottom:26px;
     }
 
     .hero-stats{
       display:flex;
-      flex-wrap:wrap;
       gap:14px;
-      margin-top:16px;
+      flex-wrap:wrap;
     }
 
     .stat{
@@ -184,13 +173,13 @@
       border:1px solid rgba(255,255,255,0.08);
       border-radius:18px;
       padding:16px 18px;
-      min-width:150px;
+      min-width:152px;
     }
 
     .stat strong{
       display:block;
-      font-size:1.2rem;
-      margin-bottom:4px;
+      font-size:1.16rem;
+      margin-bottom:5px;
     }
 
     .stat span{
@@ -199,27 +188,27 @@
     }
 
     .hero-panel{
-      background:linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.06));
-      border:1px solid rgba(255,255,255,0.09);
-      border-radius:28px;
-      box-shadow:var(--shadow);
-      padding:22px;
       position:relative;
       overflow:hidden;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.05));
+      padding:22px;
+      box-shadow:var(--shadow);
     }
 
     .glow{
       position:absolute;
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background:rgba(110,168,255,0.18);
-      filter:blur(30px);
+      right:-30px;
       top:-40px;
-      right:-20px;
+      width:190px;
+      height:190px;
+      border-radius:50%;
+      background:rgba(115,169,255,0.18);
+      filter:blur(30px);
     }
 
-    .dashboard-preview{
+    .preview-grid{
       display:grid;
       gap:16px;
       position:relative;
@@ -227,51 +216,48 @@
     }
 
     .mini-card{
-      background:rgba(5,14,24,0.52);
+      background:rgba(3,10,18,0.45);
       border:1px solid rgba(255,255,255,0.08);
       border-radius:20px;
       padding:18px;
+      animation:floatCard 4.8s ease-in-out infinite;
     }
 
-    .mini-row{
+    .mini-card:nth-child(2){animation-delay:.7s}
+    .mini-card:nth-child(3){animation-delay:1.4s}
+
+    @keyframes floatCard{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-4px)}
+      100%{transform:translateY(0)}
+    }
+
+    .mini-title{color:var(--muted);font-size:.92rem;margin-bottom:8px}
+    .money{font-size:1.85rem;font-weight:900;letter-spacing:-.8px}
+    .row{
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:12px;
-    }
-
-    .mini-title{
-      color:var(--muted);
-      font-size:.92rem;
-      margin-bottom:8px;
-    }
-
-    .money{
-      font-size:1.9rem;
-      font-weight:800;
-      letter-spacing:-0.8px;
+      flex-wrap:wrap;
     }
 
     .progress{
       width:100%;
       height:11px;
       border-radius:999px;
-      background:rgba(255,255,255,0.08);
       overflow:hidden;
+      background:rgba(255,255,255,0.08);
       margin-top:12px;
     }
 
     .progress > div{
       height:100%;
-      width:62%;
-      background:linear-gradient(90deg, var(--accent), var(--accent-2));
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
       border-radius:999px;
     }
 
-    .section{
-      padding:34px 0;
-    }
-
+    .section{padding:34px 0}
     .section-head{
       display:flex;
       justify-content:space-between;
@@ -282,20 +268,26 @@
 
     .section-head h2{
       margin:0;
-      font-size:clamp(1.7rem, 3vw, 2.4rem);
+      font-size:clamp(1.7rem,3vw,2.35rem);
       letter-spacing:-1px;
     }
 
     .section-head p{
       color:var(--muted);
       margin:8px 0 0;
-      max-width:60ch;
       line-height:1.65;
+      max-width:64ch;
     }
 
     .grid-3{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
       gap:18px;
     }
 
@@ -307,26 +299,18 @@
       box-shadow:var(--shadow);
     }
 
-    .feature-card h3,
-    .plan-card h3,
-    .tool-card h3,
-    .question-card h3,
-    .faq-card h3{
+    .card h3{
       margin:0 0 10px;
       font-size:1.15rem;
     }
 
-    .feature-card p,
-    .plan-card p,
-    .tool-card p,
-    .question-card p,
-    .faq-card p{
+    .card p{
       margin:0;
       color:var(--muted);
       line-height:1.65;
     }
 
-    .features-list, .plan-list, .question-list{
+    .list{
       padding-left:18px;
       margin:16px 0 0;
       color:var(--muted);
@@ -335,7 +319,7 @@
 
     .plans{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:18px;
     }
 
@@ -348,31 +332,31 @@
       position:absolute;
       top:16px;
       right:16px;
-      background:rgba(255,255,255,0.09);
-      border:1px solid rgba(255,255,255,0.09);
-      color:var(--accent-2);
       padding:7px 11px;
       border-radius:999px;
       font-size:.82rem;
-      font-weight:700;
+      font-weight:800;
+      background:rgba(255,255,255,0.09);
+      border:1px solid rgba(255,255,255,0.1);
+      color:var(--accent2);
     }
 
     .plan-price{
       font-size:2rem;
       font-weight:900;
-      margin:6px 0 10px;
+      margin:8px 0 10px;
       letter-spacing:-1px;
     }
 
     .plan-sub{
       color:var(--muted);
-      font-size:.92rem;
-      margin-bottom:14px;
+      font-size:.93rem;
+      margin-bottom:12px;
     }
 
     .plan-highlight{
-      border:1px solid rgba(116,240,194,0.28);
-      background:linear-gradient(180deg, rgba(116,240,194,0.08), rgba(255,255,255,0.05));
+      background:linear-gradient(180deg,rgba(113,240,193,0.08),rgba(255,255,255,0.05));
+      border-color:rgba(113,240,193,0.26);
     }
 
     .auth-wrap{
@@ -381,18 +365,15 @@
       gap:18px;
     }
 
-    .form-group{
-      margin-bottom:14px;
-    }
-
+    .form-group{margin-bottom:14px}
     label{
       display:block;
       margin-bottom:8px;
-      font-size:.92rem;
       color:#d9e6ff;
+      font-size:.92rem;
     }
 
-    input, select{
+    input,select,textarea{
       width:100%;
       border-radius:14px;
       border:1px solid rgba(255,255,255,0.1);
@@ -402,26 +383,24 @@
       outline:none;
     }
 
-    input:focus, select:focus{
-      border-color:rgba(110,168,255,0.55);
-      box-shadow:0 0 0 4px rgba(110,168,255,0.12);
+    input:focus,select:focus,textarea:focus{
+      border-color:rgba(115,169,255,0.55);
+      box-shadow:0 0 0 4px rgba(115,169,255,0.12);
     }
 
-    .small{
-      font-size:.88rem;
-      color:var(--muted);
+    textarea{
+      resize:vertical;
+      min-height:105px;
     }
 
-    .success{
-      color:var(--accent-2);
-    }
-
-    .warning{
-      color:var(--gold);
-    }
-
-    .error{
-      color:var(--danger);
+    .small{font-size:.88rem;color:var(--muted)}
+    .success{color:var(--accent2)}
+    .warning{color:var(--gold)}
+    .error{color:var(--danger)}
+    .muted-line{
+      height:1px;
+      background:rgba(255,255,255,0.08);
+      margin:18px 0;
     }
 
     .dashboard{
@@ -434,8 +413,8 @@
       justify-content:space-between;
       gap:16px;
       align-items:center;
-      margin-bottom:22px;
       flex-wrap:wrap;
+      margin-bottom:20px;
     }
 
     .welcome-text h2{
@@ -445,30 +424,28 @@
     }
 
     .welcome-text p{
-      color:var(--muted);
       margin:8px 0 0;
+      color:var(--muted);
     }
 
-    .dash-grid{
+    .dash-top{
       display:grid;
       grid-template-columns:1.2fr .8fr;
       gap:18px;
+      margin-bottom:18px;
     }
 
     .tool-grid{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
+      grid-template-columns:repeat(2,1fr);
       gap:18px;
-      margin-top:18px;
     }
 
-    .full{
-      grid-column:1 / -1;
-    }
+    .full{grid-column:1 / -1}
 
     .kpi-grid{
       display:grid;
-      grid-template-columns:repeat(3, 1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:14px;
       margin-top:14px;
     }
@@ -491,28 +468,35 @@
       font-weight:800;
     }
 
-    .range-row{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      margin:10px 0;
-      color:var(--muted);
-      font-size:.94rem;
-    }
-
-    input[type="range"]{
-      padding:0;
-      background:transparent;
-      border:none;
-      box-shadow:none;
-    }
-
     .tip-box{
-      background:linear-gradient(135deg, rgba(110,168,255,0.14), rgba(116,240,194,0.12));
-      border:1px solid rgba(255,255,255,0.1);
+      background:linear-gradient(135deg,rgba(115,169,255,0.14),rgba(113,240,193,0.11));
+      border:1px solid rgba(255,255,255,0.09);
       border-radius:20px;
       padding:18px;
       margin-top:14px;
+    }
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .tab{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .tab.active{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#05111a;
+      border-color:transparent;
     }
 
     .question-block{
@@ -528,7 +512,7 @@
       font-size:1rem;
     }
 
-    .question-block .options{
+    .options{
       display:grid;
       gap:10px;
     }
@@ -543,102 +527,86 @@
       color:var(--text);
       cursor:pointer;
       border:1px solid rgba(255,255,255,0.08);
+      transition:.18s ease;
     }
 
+    .option-btn:hover{transform:translateY(-1px)}
     .option-btn.correct{
-      border-color:rgba(116,240,194,0.5);
-      background:rgba(116,240,194,0.14);
+      border-color:rgba(113,240,193,0.45);
+      background:rgba(113,240,193,0.13);
     }
-
     .option-btn.wrong{
-      border-color:rgba(255,125,125,0.45);
-      background:rgba(255,125,125,0.12);
+      border-color:rgba(255,139,139,0.45);
+      background:rgba(255,139,139,0.11);
     }
 
     .footer{
-      padding:36px 0 52px;
+      padding:36px 0 50px;
+      text-align:center;
       color:var(--muted);
+    }
+
+    .tag{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+      font-size:.82rem;
+      margin:6px 6px 0 0;
+    }
+
+    .pass-panel{
+      display:none;
+      animation:fadeUp .35s ease;
+    }
+    .pass-panel.active{display:block}
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(8px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .score-ring{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      margin:auto;
+      background:
+        radial-gradient(circle closest-side,#0a1525 74%,transparent 75% 100%),
+        conic-gradient(var(--accent2) 0 72%,rgba(255,255,255,0.08) 72% 100%);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .score-ring strong{
+      font-size:1.5rem;
+      display:block;
       text-align:center;
     }
 
-    .hide{
-      display:none !important;
-    }
-
-    .muted-line{
-      height:1px;
-      background:rgba(255,255,255,0.08);
-      margin:18px 0;
-    }
-
-    .pricing-note{
+    .score-ring span{
+      font-size:.8rem;
       color:var(--muted);
-      font-size:.92rem;
-      margin-top:10px;
+      display:block;
+      text-align:center;
     }
 
-    .pass-switch{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .pass-chip{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.1);
-      background:rgba(255,255,255,0.05);
-      color:var(--text);
-      cursor:pointer;
-    }
-
-    .pass-chip.active{
-      background:linear-gradient(135deg, var(--accent), var(--accent-2));
-      color:#06111b;
-      border-color:transparent;
-      font-weight:800;
-    }
-
-    @media (max-width: 980px){
-      .hero-grid,
-      .auth-wrap,
-      .dash-grid{
+    @media (max-width: 1000px){
+      .hero-grid,.auth-wrap,.dash-top,.tool-grid,.grid-3,.grid-2,.plans{
         grid-template-columns:1fr;
       }
-
-      .grid-3,
-      .plans,
-      .tool-grid{
-        grid-template-columns:1fr;
-      }
-
-      .kpi-grid{
-        grid-template-columns:1fr;
-      }
-
-      .nav-links{
-        display:none;
-      }
+      .kpi-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
     }
 
     @media (max-width: 680px){
-      .hero{
-        padding-top:50px;
-      }
-
-      .nav{
-        padding:14px 0;
-      }
-
-      .hero-cta,
-      .nav-actions{
-        flex-wrap:wrap;
-      }
-
-      .section{
-        padding:28px 0;
-      }
+      .hero{padding-top:54px}
+      .nav-actions{flex-wrap:wrap}
+      .hero-cta{flex-wrap:wrap}
+      .section{padding:28px 0}
     }
   </style>
 </head>
@@ -671,11 +639,12 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="pill">⚡ Smart money tools for students, beginners, and future builders</div>
-          <h1>Grow your money confidence with a cleaner, smarter finance dashboard.</h1>
+          <div class="pill">⚡ Startup-style finance app for beginners and future investors</div>
+          <h1>Make smarter money moves with tools that actually feel modern.</h1>
           <p>
-            WealthWise helps you budget better, track savings, understand investing, and build strong money habits.
-            Start with the Basic Pass, then unlock Pro and Elite for deeper planning, guided questions, and daily improvement.
+            WealthWise helps users learn budgeting, saving, and investing through interactive tools,
+            pass-based features, daily tips, quizzes, and guided prompts. Start with Basic, grow into Pro,
+            and unlock deeper strategy in Elite.
           </p>
 
           <div class="hero-cta">
@@ -685,50 +654,52 @@
 
           <div class="hero-stats">
             <div class="stat">
-              <strong>Budget Tools</strong>
-              <span>Plan spending clearly</span>
+              <strong>Budget Better</strong>
+              <span>Understand spending clearly</span>
             </div>
             <div class="stat">
-              <strong>Savings Goals</strong>
+              <strong>Save Faster</strong>
               <span>Track progress visually</span>
             </div>
             <div class="stat">
-              <strong>Daily Tips</strong>
-              <span>Build smarter habits</span>
+              <strong>Grow Smarter</strong>
+              <span>Learn investing basics</span>
             </div>
           </div>
         </div>
 
         <div class="hero-panel">
           <div class="glow"></div>
-          <div class="dashboard-preview">
+          <div class="preview-grid">
             <div class="mini-card">
               <div class="mini-title">Monthly Snapshot</div>
-              <div class="mini-row">
+              <div class="row">
                 <div>
                   <div class="money">$1,240</div>
-                  <div class="small">Money available to allocate</div>
+                  <div class="small">ready to allocate</div>
                 </div>
-                <div class="small success">+12% from last month</div>
+                <div class="small success">+12% improvement</div>
               </div>
             </div>
 
             <div class="mini-card">
               <div class="mini-title">Savings Goal</div>
-              <div class="mini-row">
+              <div class="row">
                 <div><strong>$620 / $1,000</strong></div>
                 <div class="small">62% complete</div>
               </div>
-              <div class="progress"><div></div></div>
+              <div class="progress"><div style="width:62%"></div></div>
             </div>
 
             <div class="mini-card">
-              <div class="mini-title">Investment Split Demo</div>
-              <div class="mini-row">
-                <div class="small">Stocks: 70%</div>
-                <div class="small">Cash: 30%</div>
+              <div class="mini-title">Pass Features</div>
+              <div class="row">
+                <span class="tag">Budgeting</span>
+                <span class="tag">Quizzes</span>
+                <span class="tag">Daily Tips</span>
+                <span class="tag">Challenges</span>
+                <span class="tag">Goal Planner</span>
               </div>
-              <div class="progress"><div style="width:70%"></div></div>
             </div>
           </div>
         </div>
@@ -739,42 +710,42 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>What WealthWise gives you</h2>
+            <h2>Core platform features</h2>
             <p>
-              A polished startup-style finance experience with beginner-friendly tools, simple visuals, helpful questions,
-              and progress features that make money feel less confusing.
+              WealthWise combines clean design with practical money tools so users are not just reading advice —
+              they are interacting with it.
             </p>
           </div>
         </div>
 
         <div class="grid-3">
-          <div class="card feature-card">
-            <h3>Budget Calculator</h3>
-            <p>Enter your income and expenses, then instantly see what is left over for savings, investing, or personal spending.</p>
-            <ul class="features-list">
-              <li>Monthly breakdown</li>
-              <li>Spending awareness</li>
-              <li>Fast leftover calculation</li>
+          <div class="card">
+            <h3>Interactive Learning</h3>
+            <p>Built-in quizzes, reflection prompts, and challenges help users learn by doing, not just scrolling.</p>
+            <ul class="list">
+              <li>Money questions inside the app</li>
+              <li>Feedback after answers</li>
+              <li>Daily mindset improvement</li>
             </ul>
           </div>
 
-          <div class="card feature-card">
-            <h3>Savings Tracker</h3>
-            <p>Set a target, update your current amount, and watch your progress fill up in real time.</p>
-            <ul class="features-list">
-              <li>Goal percentage</li>
-              <li>Progress bar</li>
-              <li>Milestone motivation</li>
+          <div class="card">
+            <h3>Tool-Based Dashboard</h3>
+            <p>Users can calculate budgets, track savings, experiment with investing splits, and explore compounding.</p>
+            <ul class="list">
+              <li>Budget calculator</li>
+              <li>Savings tracker</li>
+              <li>Growth simulation tools</li>
             </ul>
           </div>
 
-          <div class="card feature-card">
-            <h3>Compound Growth Demo</h3>
-            <p>See how steady investing can grow over time with a simple compound calculator and yearly projection.</p>
-            <ul class="features-list">
-              <li>Starting amount</li>
-              <li>Monthly contribution</li>
-              <li>Estimated future value</li>
+          <div class="card">
+            <h3>Pass Progression</h3>
+            <p>Each pass unlocks more depth, with higher tiers getting more advanced planning and strategy features.</p>
+            <ul class="list">
+              <li>Basic for foundations</li>
+              <li>Pro for habits + planning</li>
+              <li>Elite for strategy + long-term thinking</li>
             </ul>
           </div>
         </div>
@@ -785,9 +756,9 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Choose your pass</h2>
+            <h2>All WealthWise passes</h2>
             <p>
-              Basic gives you the core tools. Pro adds planning depth. Elite adds strategy, reflection questions, and a stronger growth system.
+              Every level builds upward. Higher passes keep everything from the lower tier and add stronger features.
             </p>
           </div>
         </div>
@@ -797,87 +768,53 @@
             <div class="plan-badge">Starter</div>
             <h3>Basic Pass</h3>
             <div class="plan-price">$9<span class="small"> / month</span></div>
-            <div class="plan-sub">Perfect for getting started</div>
-            <ul class="plan-list">
-              <li>Account creation and login</li>
+            <div class="plan-sub">For users getting started with money habits.</div>
+            <ul class="list">
+              <li>Create account + login</li>
               <li>Budget calculator</li>
               <li>Savings tracker</li>
               <li>Investment split slider</li>
               <li>Compound growth demo</li>
               <li>Daily tip of the day</li>
+              <li>Basic quiz questions</li>
+              <li>Reflection prompt</li>
+              <li>Weekly mini challenge</li>
             </ul>
-            <div class="pricing-note">This is the core pass and includes the main working tools.</div>
           </div>
 
           <div class="card plan-card plan-highlight">
             <div class="plan-badge">Most Popular</div>
             <h3>Pro Pass</h3>
             <div class="plan-price">$19<span class="small"> / month</span></div>
-            <div class="plan-sub">Level up with guided planning</div>
-            <ul class="plan-list">
+            <div class="plan-sub">For users who want stronger planning and consistency.</div>
+            <ul class="list">
               <li>Everything in Basic</li>
-              <li>Weekly focus challenge</li>
-              <li>Finance habit checklist</li>
-              <li>Reflection questions</li>
-              <li>Smarter spending prompts</li>
-              <li>Goal planning suggestions</li>
+              <li>Habit checklist</li>
+              <li>Spending leak detector</li>
+              <li>Goal planner</li>
+              <li>Weekly reflection board</li>
+              <li>Priority expense sorter</li>
+              <li>Stronger quiz set</li>
+              <li>More detailed challenges</li>
+              <li>Productivity + money prompts</li>
             </ul>
-            <div class="pricing-note">Great for users who want more structure and more questions inside the app.</div>
           </div>
 
           <div class="card plan-card">
             <div class="plan-badge">Advanced</div>
             <h3>Elite Pass</h3>
             <div class="plan-price">$39<span class="small"> / month</span></div>
-            <div class="plan-sub">For long-term growth and strategy</div>
-            <ul class="plan-list">
+            <div class="plan-sub">For users thinking long-term and building real strategy.</div>
+            <ul class="list">
               <li>Everything in Pro</li>
-              <li>Advanced money mindset prompts</li>
-              <li>Bigger goal planning board</li>
-              <li>Long-term wealth scenarios</li>
-              <li>Personal score tracking</li>
-              <li>Premium motivation feed</li>
-            </ul>
-            <div class="pricing-note">Best for users who want more accountability and more guided decision-making.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Real questions inside the platform</h2>
-            <p>
-              These help users think smarter, not just click around. The dashboard below includes interactive versions of these.
-            </p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="card question-card">
-            <h3>Budget Questions</h3>
-            <ul class="question-list">
-              <li>What expense this month helped you most?</li>
-              <li>What spending could you lower by 10%?</li>
-              <li>How much of your income should go to savings first?</li>
-            </ul>
-          </div>
-          <div class="card question-card">
-            <h3>Saving Questions</h3>
-            <ul class="question-list">
-              <li>What goal matters enough to save for consistently?</li>
-              <li>How many months would it take if you save $50 more?</li>
-              <li>What habit is slowing down your progress?</li>
-            </ul>
-          </div>
-          <div class="card question-card">
-            <h3>Investing Questions</h3>
-            <ul class="question-list">
-              <li>Why does starting early matter?</li>
-              <li>What happens when returns compound over time?</li>
-              <li>How much risk feels realistic for your age and goals?</li>
+              <li>Net worth tracker</li>
+              <li>Emergency fund planner</li>
+              <li>Future lifestyle projection</li>
+              <li>Risk profile simulator</li>
+              <li>Long-term wealth roadmap</li>
+              <li>Score dashboard</li>
+              <li>Advanced scenario prompts</li>
+              <li>Monthly review summary</li>
             </ul>
           </div>
         </div>
@@ -889,9 +826,7 @@
         <div class="section-head">
           <div>
             <h2>Create account or log in</h2>
-            <p>
-              This version uses browser storage for demo purposes, so it works in one file without a backend.
-            </p>
+            <p>This is a one-file front-end version, so accounts are stored in the browser with localStorage.</p>
           </div>
         </div>
 
@@ -900,25 +835,25 @@
             <h3 style="margin-top:0;">Create Account</h3>
             <div class="form-group">
               <label for="signupName">Full Name</label>
-              <input id="signupName" type="text" placeholder="Enter your name" />
+              <input id="signupName" type="text" placeholder="Enter your full name">
             </div>
             <div class="form-group">
               <label for="signupEmail">Email</label>
-              <input id="signupEmail" type="email" placeholder="Enter your email" />
+              <input id="signupEmail" type="email" placeholder="Enter your email">
             </div>
             <div class="form-group">
               <label for="signupPassword">Password</label>
-              <input id="signupPassword" type="password" placeholder="Create a password" />
+              <input id="signupPassword" type="password" placeholder="Create a password">
             </div>
             <div class="form-group">
-              <label for="signupPass">Select Pass</label>
+              <label for="signupPass">Choose Your Pass</label>
               <select id="signupPass">
                 <option value="Basic">Basic Pass</option>
                 <option value="Pro">Pro Pass</option>
                 <option value="Elite">Elite Pass</option>
               </select>
             </div>
-            <button class="btn btn-primary" style="width:100%;" onclick="signUp()">Create My Account</button>
+            <button class="btn btn-primary" style="width:100%" onclick="signUp()">Create My Account</button>
             <p id="signupMsg" class="small" style="margin-top:12px;"></p>
           </div>
 
@@ -926,18 +861,18 @@
             <h3 style="margin-top:0;">Login</h3>
             <div class="form-group">
               <label for="loginEmail">Email</label>
-              <input id="loginEmail" type="email" placeholder="Enter your email" />
+              <input id="loginEmail" type="email" placeholder="Enter your email">
             </div>
             <div class="form-group">
               <label for="loginPassword">Password</label>
-              <input id="loginPassword" type="password" placeholder="Enter your password" />
+              <input id="loginPassword" type="password" placeholder="Enter your password">
             </div>
-            <button class="btn btn-secondary" style="width:100%;" onclick="login()">Login to Dashboard</button>
+            <button class="btn btn-secondary" style="width:100%" onclick="login()">Login to Dashboard</button>
             <p id="loginMsg" class="small" style="margin-top:12px;"></p>
 
             <div class="muted-line"></div>
             <p class="small">
-              Demo account tip: create an account first, then log in. Your account is saved in your browser using localStorage.
+              Demo flow: create your account first, then log in to open the full dashboard experience.
             </p>
           </div>
         </div>
@@ -949,22 +884,22 @@
         <div class="section-head">
           <div>
             <h2>FAQ</h2>
-            <p>Simple answers to the most common questions about WealthWise.</p>
+            <p>Quick answers for your site visitors.</p>
           </div>
         </div>
 
         <div class="grid-3">
-          <div class="card faq-card">
-            <h3>Do I need experience?</h3>
-            <p>No. The site is built for beginners and keeps everything visual and simple.</p>
+          <div class="card">
+            <h3>Is this a real finance app?</h3>
+            <p>This is a front-end website demo with interactive tools and local storage login.</p>
           </div>
-          <div class="card faq-card">
-            <h3>Is this a real bank?</h3>
-            <p>No. It is a money education and planning platform, not a financial institution.</p>
+          <div class="card">
+            <h3>Does it work in one file?</h3>
+            <p>Yes. Everything is inside one `index.html` file: styling, layout, logic, and dashboard features.</p>
           </div>
-          <div class="card faq-card">
-            <h3>Does login work?</h3>
-            <p>Yes, as a front-end demo. It stores accounts locally in the browser so you can test the full flow.</p>
+          <div class="card">
+            <h3>Can I upgrade it later?</h3>
+            <p>Yes. Later you can connect it to a real backend, database, email service, and authentication system.</p>
           </div>
         </div>
       </div>
@@ -972,7 +907,7 @@
 
     <div class="footer">
       <div class="container">
-        © 2026 WealthWise. Build smarter habits. Think longer-term. Start now.
+        © 2026 WealthWise. Smarter habits. Better decisions. Stronger future.
       </div>
     </div>
   </main>
@@ -982,227 +917,384 @@
       <div class="welcome-bar">
         <div class="welcome-text">
           <h2>Welcome back, <span id="userNameDisplay">User</span></h2>
-          <p>
-            Your current plan:
-            <strong id="userPassDisplay">Basic</strong>
-          </p>
+          <p>Your current pass: <strong id="userPassDisplay">Basic Pass</strong></p>
         </div>
         <div>
           <button class="btn btn-secondary" onclick="logout()">Logout</button>
         </div>
       </div>
 
-      <div class="card">
-        <h3 style="margin-top:0;">Choose Dashboard View</h3>
-        <p class="small">Switch between pass previews. Your saved account pass still shows above.</p>
-        <div class="pass-switch">
-          <button class="pass-chip active" data-pass="Basic" onclick="switchDashboardPass('Basic', this)">Basic View</button>
-          <button class="pass-chip" data-pass="Pro" onclick="switchDashboardPass('Pro', this)">Pro View</button>
-          <button class="pass-chip" data-pass="Elite" onclick="switchDashboardPass('Elite', this)">Elite View</button>
+      <div class="dash-top">
+        <div class="card">
+          <h3 style="margin-top:0;">Daily Tip</h3>
+          <div class="tip-box">
+            <strong id="dailyTipTitle">Tip of the Day</strong>
+            <p id="dailyTipText" style="margin-top:8px;color:#dce8ff;line-height:1.7"></p>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">Current Pass</div>
+              <div class="kpi-value" id="sidePlan">Basic</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Tip Streak</div>
+              <div class="kpi-value" id="tipStreak">7 days</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Focus Score</div>
+              <div class="kpi-value" id="focusScore">82</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0;">Money Confidence Score</h3>
+          <div class="score-ring">
+            <div>
+              <strong id="confidenceScore">72</strong>
+              <span>/ 100</span>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <strong>Today's Goal</strong>
+            <p id="todayGoal" style="margin-top:8px;color:#dce8ff;"></p>
+          </div>
         </div>
       </div>
 
-      <div class="dash-grid" style="margin-top:18px;">
-        <div>
-          <div class="card">
-            <h3 style="margin-top:0;">Daily Tip</h3>
-            <div class="tip-box">
-              <strong id="dailyTipTitle">Tip of the Day</strong>
-              <p id="dailyTipText" style="margin-top:8px; color:#dce8ff; line-height:1.7;"></p>
+      <div class="card" style="margin-bottom:18px;">
+        <h3 style="margin-top:0;">Dashboard Pass View</h3>
+        <p class="small" style="margin-bottom:14px;">
+          Your real account pass stays saved, but you can preview all pass dashboards below.
+        </p>
+        <div class="tabs">
+          <button class="tab active" onclick="switchPassView('Basic', this)">Basic View</button>
+          <button class="tab" onclick="switchPassView('Pro', this)">Pro View</button>
+          <button class="tab" onclick="switchPassView('Elite', this)">Elite View</button>
+        </div>
+      </div>
+
+      <div class="tool-grid">
+        <div class="card">
+          <h3>Budget Calculator</h3>
+          <div class="form-group">
+            <label for="income">Monthly Income ($)</label>
+            <input id="income" type="number" placeholder="e.g. 2000">
+          </div>
+          <div class="form-group">
+            <label for="rent">Housing / Rent ($)</label>
+            <input id="rent" type="number" placeholder="e.g. 700">
+          </div>
+          <div class="form-group">
+            <label for="food">Food ($)</label>
+            <input id="food" type="number" placeholder="e.g. 250">
+          </div>
+          <div class="form-group">
+            <label for="transport">Transport ($)</label>
+            <input id="transport" type="number" placeholder="e.g. 120">
+          </div>
+          <div class="form-group">
+            <label for="other">Other Expenses ($)</label>
+            <input id="other" type="number" placeholder="e.g. 180">
+          </div>
+          <button class="btn btn-primary" style="width:100%" onclick="calculateBudget()">Calculate Budget</button>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">Expenses</div>
+              <div class="kpi-value" id="budgetExpenses">$0</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Money Left</div>
+              <div class="kpi-value" id="budgetLeft">$0</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Suggested Savings</div>
+              <div class="kpi-value" id="budgetSave">$0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Savings Tracker</h3>
+          <div class="form-group">
+            <label for="goalAmount">Savings Goal ($)</label>
+            <input id="goalAmount" type="number" placeholder="e.g. 1000">
+          </div>
+          <div class="form-group">
+            <label for="currentSaved">Current Saved ($)</label>
+            <input id="currentSaved" type="number" placeholder="e.g. 350">
+          </div>
+          <button class="btn btn-secondary" style="width:100%" onclick="updateSavings()">Update Savings</button>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">Progress</div>
+              <div class="kpi-value" id="savingsPercent">0%</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Remaining</div>
+              <div class="kpi-value" id="savingsRemaining">$0</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Status</div>
+              <div class="kpi-value" id="savingsStatus">Not started</div>
             </div>
           </div>
 
-          <div class="tool-grid">
-            <div class="card tool-card">
-              <h3>Budget Calculator</h3>
-              <div class="form-group">
-                <label for="income">Monthly Income ($)</label>
-                <input id="income" type="number" placeholder="e.g. 2000" />
-              </div>
-              <div class="form-group">
-                <label for="rent">Housing / Rent ($)</label>
-                <input id="rent" type="number" placeholder="e.g. 700" />
-              </div>
-              <div class="form-group">
-                <label for="food">Food ($)</label>
-                <input id="food" type="number" placeholder="e.g. 250" />
-              </div>
-              <div class="form-group">
-                <label for="transport">Transport ($)</label>
-                <input id="transport" type="number" placeholder="e.g. 120" />
-              </div>
-              <div class="form-group">
-                <label for="other">Other Expenses ($)</label>
-                <input id="other" type="number" placeholder="e.g. 180" />
-              </div>
-              <button class="btn btn-primary" style="width:100%;" onclick="calculateBudget()">Calculate Budget</button>
+          <div class="progress" style="margin-top:16px;">
+            <div id="savingsBar" style="width:0%"></div>
+          </div>
+        </div>
 
-              <div class="kpi-grid">
-                <div class="kpi">
-                  <div class="kpi-label">Total Expenses</div>
-                  <div class="kpi-value" id="budgetExpenses">$0</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpi-label">Money Left</div>
-                  <div class="kpi-value" id="budgetLeft">$0</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpi-label">Savings Suggestion</div>
-                  <div class="kpi-value" id="budgetSave">$0</div>
-                </div>
-              </div>
+        <div class="card">
+          <h3>Investment Split Slider</h3>
+          <p class="small">Use the slider to test a simple growth vs safety example.</p>
+          <div class="form-group" style="margin-top:16px;">
+            <label for="stockSlider">Stocks Percentage</label>
+            <input id="stockSlider" type="range" min="0" max="100" value="70" oninput="updateInvestmentSplit()">
+          </div>
+
+          <div class="row small">
+            <span>Stocks: <strong id="stockPercent">70%</strong></span>
+            <span>Safer Assets / Cash: <strong id="safePercent">30%</strong></span>
+          </div>
+          <div class="progress"><div id="investBar" style="width:70%"></div></div>
+
+          <div class="tip-box">
+            <strong>Quick idea</strong>
+            <p id="investMessage" style="margin-top:8px;color:#dce8ff;"></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Compound Growth Demo</h3>
+          <div class="form-group">
+            <label for="initialAmount">Starting Amount ($)</label>
+            <input id="initialAmount" type="number" placeholder="e.g. 500">
+          </div>
+          <div class="form-group">
+            <label for="monthlyContribution">Monthly Contribution ($)</label>
+            <input id="monthlyContribution" type="number" placeholder="e.g. 100">
+          </div>
+          <div class="form-group">
+            <label for="years">Years</label>
+            <input id="years" type="number" placeholder="e.g. 10">
+          </div>
+          <div class="form-group">
+            <label for="interestRate">Estimated Annual Return (%)</label>
+            <input id="interestRate" type="number" placeholder="e.g. 8">
+          </div>
+          <button class="btn btn-primary" style="width:100%" onclick="calculateCompound()">Run Demo</button>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">Final Value</div>
+              <div class="kpi-value" id="compoundFinal">$0</div>
             </div>
-
-            <div class="card tool-card">
-              <h3>Savings Tracker</h3>
-              <div class="form-group">
-                <label for="goalAmount">Savings Goal ($)</label>
-                <input id="goalAmount" type="number" placeholder="e.g. 1000" />
-              </div>
-              <div class="form-group">
-                <label for="currentSaved">Current Saved ($)</label>
-                <input id="currentSaved" type="number" placeholder="e.g. 350" />
-              </div>
-              <button class="btn btn-secondary" style="width:100%;" onclick="updateSavings()">Update Savings</button>
-
-              <div class="kpi-grid">
-                <div class="kpi">
-                  <div class="kpi-label">Current Progress</div>
-                  <div class="kpi-value" id="savingsPercent">0%</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpi-label">Remaining</div>
-                  <div class="kpi-value" id="savingsRemaining">$0</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpi-label">Status</div>
-                  <div class="kpi-value" id="savingsStatus">Not started</div>
-                </div>
-              </div>
-
-              <div class="progress" style="margin-top:16px;">
-                <div id="savingsBar" style="width:0%"></div>
-              </div>
+            <div class="kpi">
+              <div class="kpi-label">Contributions</div>
+              <div class="kpi-value" id="compoundContrib">$0</div>
             </div>
-
-            <div class="card tool-card">
-              <h3>Investment Split Slider</h3>
-              <p class="small">Move the slider to see a simple example split between growth and safety.</p>
-
-              <div class="form-group" style="margin-top:16px;">
-                <label for="stockSlider">Stocks Percentage</label>
-                <input id="stockSlider" type="range" min="0" max="100" value="70" oninput="updateInvestmentSplit()" />
-              </div>
-
-              <div class="range-row">
-                <span>Stocks: <strong id="stockPercent">70%</strong></span>
-                <span>Safer Assets / Cash: <strong id="safePercent">30%</strong></span>
-              </div>
-
-              <div class="progress">
-                <div id="investBar" style="width:70%"></div>
-              </div>
-
-              <div class="tip-box">
-                <strong>Quick idea</strong>
-                <p id="investMessage" style="margin-top:8px; color:#dce8ff;">This mix leans more toward growth, which can mean more ups and downs over time.</p>
-              </div>
+            <div class="kpi">
+              <div class="kpi-label">Growth</div>
+              <div class="kpi-value" id="compoundGrowth">$0</div>
             </div>
+          </div>
+        </div>
 
-            <div class="card tool-card">
-              <h3>Compound Growth Demo</h3>
-              <div class="form-group">
-                <label for="initialAmount">Starting Amount ($)</label>
-                <input id="initialAmount" type="number" placeholder="e.g. 500" />
-              </div>
-              <div class="form-group">
-                <label for="monthlyContribution">Monthly Contribution ($)</label>
-                <input id="monthlyContribution" type="number" placeholder="e.g. 100" />
-              </div>
-              <div class="form-group">
-                <label for="years">Years</label>
-                <input id="years" type="number" placeholder="e.g. 10" />
-              </div>
-              <div class="form-group">
-                <label for="interestRate">Estimated Annual Return (%)</label>
-                <input id="interestRate" type="number" placeholder="e.g. 8" />
-              </div>
-              <button class="btn btn-primary" style="width:100%;" onclick="calculateCompound()">Run Demo</button>
-
-              <div class="kpi-grid">
-                <div class="kpi">
-                  <div class="kpi-label">Estimated Final Value</div>
-                  <div class="kpi-value" id="compoundFinal">$0</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpi-label">Your Contributions</div>
-                  <div class="kpi-value" id="compoundContrib">$0</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpi-label">Estimated Growth</div>
-                  <div class="kpi-value" id="compoundGrowth">$0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card tool-card full" id="questionsCard">
-              <h3 id="questionsTitle">Basic Questions</h3>
-              <p class="small" id="questionsDesc">Answer quick questions to build stronger money habits.</p>
+        <!-- BASIC -->
+        <div class="pass-panel active full" id="basicPanel">
+          <div class="grid-2">
+            <div class="card">
+              <h3>Basic Quiz + Reflection</h3>
+              <p class="small">Simple questions that build stronger foundations.</p>
 
               <div class="question-block">
-                <h4 id="quizQuestion">Which habit usually helps savings grow faster?</h4>
-                <div class="options" id="quizOptions"></div>
-                <p id="quizFeedback" class="small" style="margin-top:12px;"></p>
+                <h4 id="basicQuizQuestion">Which habit usually helps savings grow faster?</h4>
+                <div class="options" id="basicQuizOptions"></div>
+                <p id="basicQuizFeedback" class="small" style="margin-top:12px;"></p>
               </div>
 
-              <div class="question-block" id="reflectionBlock">
+              <div class="question-block">
                 <h4>Reflection Prompt</h4>
-                <p id="reflectionText" style="color:var(--muted); line-height:1.7;"></p>
+                <p id="basicReflection" style="color:var(--muted);line-height:1.7;"></p>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Basic Extra Features</h3>
+              <p class="small">3 added features for Basic.</p>
+
+              <div class="question-block">
+                <h4>1) Expense Split Visual</h4>
+                <p style="color:var(--muted);line-height:1.7;">
+                  Helps users see which category is taking the most money after they enter their budget.
+                </p>
+                <div class="kpi-grid">
+                  <div class="kpi"><div class="kpi-label">Housing</div><div class="kpi-value" id="splitHousing">0%</div></div>
+                  <div class="kpi"><div class="kpi-label">Food</div><div class="kpi-value" id="splitFood">0%</div></div>
+                  <div class="kpi"><div class="kpi-label">Other</div><div class="kpi-value" id="splitOther">0%</div></div>
+                </div>
+              </div>
+
+              <div class="question-block">
+                <h4>2) Savings Milestone Message</h4>
+                <p id="milestoneMessage" style="color:var(--muted);line-height:1.7;">
+                  Start tracking your goal to unlock milestone messages.
+                </p>
+              </div>
+
+              <div class="question-block">
+                <h4>3) Daily Money Check-In</h4>
+                <textarea id="dailyCheckin" placeholder="What is one smart money move you want to make today?"></textarea>
+                <button class="btn btn-secondary" style="margin-top:12px;width:100%" onclick="saveCheckin()">Save Check-In</button>
+                <p id="checkinMsg" class="small" style="margin-top:10px;"></p>
               </div>
             </div>
           </div>
         </div>
 
-        <div>
-          <div class="card">
-            <h3 style="margin-top:0;">Your Money Snapshot</h3>
-            <div class="kpi-grid">
-              <div class="kpi">
-                <div class="kpi-label">Plan</div>
-                <div class="kpi-value" id="sidePlan">Basic</div>
+        <!-- PRO -->
+        <div class="pass-panel full" id="proPanel">
+          <div class="grid-2">
+            <div class="card">
+              <h3>Pro Quiz + Reflection</h3>
+              <p class="small">Stronger planning and habit-building questions.</p>
+
+              <div class="question-block">
+                <h4 id="proQuizQuestion">What is the smartest first step if you keep overspending every month?</h4>
+                <div class="options" id="proQuizOptions"></div>
+                <p id="proQuizFeedback" class="small" style="margin-top:12px;"></p>
               </div>
-              <div class="kpi">
-                <div class="kpi-label">Tip Streak</div>
-                <div class="kpi-value" id="tipStreak">7 days</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-label">Focus Score</div>
-                <div class="kpi-value" id="focusScore">82</div>
+
+              <div class="question-block">
+                <h4>Reflection Prompt</h4>
+                <p id="proReflection" style="color:var(--muted);line-height:1.7;"></p>
               </div>
             </div>
 
-            <div class="tip-box">
-              <strong>Today's Goal</strong>
-              <p id="todayGoal" style="margin-top:8px; color:#dce8ff;"></p>
+            <div class="card">
+              <h3>Pro Extra Features</h3>
+              <p class="small">3 added features for Pro.</p>
+
+              <div class="question-block">
+                <h4>1) Habit Checklist</h4>
+                <div class="options">
+                  <label><input type="checkbox" class="habitCheck"> I checked my spending today</label>
+                  <label><input type="checkbox" class="habitCheck"> I saved before spending</label>
+                  <label><input type="checkbox" class="habitCheck"> I avoided one unnecessary purchase</label>
+                </div>
+                <button class="btn btn-secondary" style="margin-top:12px;width:100%" onclick="updateHabitScore()">Update Habit Score</button>
+                <p id="habitMsg" class="small" style="margin-top:10px;"></p>
+              </div>
+
+              <div class="question-block">
+                <h4>2) Spending Leak Detector</h4>
+                <div class="form-group">
+                  <label for="leakCategory">Which category feels hardest to control?</label>
+                  <select id="leakCategory">
+                    <option>Food delivery</option>
+                    <option>Shopping</option>
+                    <option>Entertainment</option>
+                    <option>Subscriptions</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <button class="btn btn-secondary" style="width:100%" onclick="detectLeak()">Analyze Category</button>
+                <p id="leakMsg" class="small" style="margin-top:10px;"></p>
+              </div>
+
+              <div class="question-block">
+                <h4>3) Goal Planner</h4>
+                <div class="form-group">
+                  <label for="proGoal">Enter one money goal</label>
+                  <input id="proGoal" type="text" placeholder="e.g. Save $800 for laptop">
+                </div>
+                <div class="form-group">
+                  <label for="proGoalMonths">How many months?</label>
+                  <input id="proGoalMonths" type="number" placeholder="e.g. 4">
+                </div>
+                <button class="btn btn-primary" style="width:100%" onclick="planGoal()">Plan Goal</button>
+                <p id="goalPlanMsg" class="small" style="margin-top:10px;"></p>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="card" style="margin-top:18px;">
-            <h3 style="margin-top:0;">Weekly Challenge</h3>
-            <p class="small">Small actions that make your money habits stronger.</p>
-            <ul class="plan-list" id="weeklyChallenges">
-              <li>Track one spending category for 7 days.</li>
-              <li>Save before you spend this week.</li>
-              <li>Write one money goal with a deadline.</li>
-            </ul>
-          </div>
+        <!-- ELITE -->
+        <div class="pass-panel full" id="elitePanel">
+          <div class="grid-2">
+            <div class="card">
+              <h3>Elite Quiz + Reflection</h3>
+              <p class="small">Long-term strategy and wealth thinking prompts.</p>
 
-          <div class="card" style="margin-top:18px;">
-            <h3 style="margin-top:0;">Pass Benefits Preview</h3>
-            <div id="passPreviewContent" style="color:var(--muted); line-height:1.75;">
-              Basic gives you the core tools to budget, save, and learn how money can grow over time.
+              <div class="question-block">
+                <h4 id="eliteQuizQuestion">Why is compounding powerful over long periods?</h4>
+                <div class="options" id="eliteQuizOptions"></div>
+                <p id="eliteQuizFeedback" class="small" style="margin-top:12px;"></p>
+              </div>
+
+              <div class="question-block">
+                <h4>Reflection Prompt</h4>
+                <p id="eliteReflection" style="color:var(--muted);line-height:1.7;"></p>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Elite Extra Features</h3>
+              <p class="small">3 added features for Elite.</p>
+
+              <div class="question-block">
+                <h4>1) Net Worth Tracker</h4>
+                <div class="form-group">
+                  <label for="assets">Total Assets ($)</label>
+                  <input id="assets" type="number" placeholder="e.g. 3000">
+                </div>
+                <div class="form-group">
+                  <label for="debts">Total Debts ($)</label>
+                  <input id="debts" type="number" placeholder="e.g. 400">
+                </div>
+                <button class="btn btn-secondary" style="width:100%" onclick="calcNetWorth()">Calculate Net Worth</button>
+                <p id="netWorthMsg" class="small" style="margin-top:10px;"></p>
+              </div>
+
+              <div class="question-block">
+                <h4>2) Emergency Fund Planner</h4>
+                <div class="form-group">
+                  <label for="monthlyNeeds">Monthly Essential Expenses ($)</label>
+                  <input id="monthlyNeeds" type="number" placeholder="e.g. 900">
+                </div>
+                <div class="form-group">
+                  <label for="monthsCover">Months of coverage</label>
+                  <input id="monthsCover" type="number" placeholder="e.g. 3">
+                </div>
+                <button class="btn btn-secondary" style="width:100%" onclick="planEmergencyFund()">Plan Emergency Fund</button>
+                <p id="emergencyMsg" class="small" style="margin-top:10px;"></p>
+              </div>
+
+              <div class="question-block">
+                <h4>3) Future Lifestyle Projection</h4>
+                <div class="form-group">
+                  <label for="futureMonthlySave">Monthly amount you might invest ($)</label>
+                  <input id="futureMonthlySave" type="number" placeholder="e.g. 200">
+                </div>
+                <div class="form-group">
+                  <label for="futureYears">Years invested</label>
+                  <input id="futureYears" type="number" placeholder="e.g. 15">
+                </div>
+                <button class="btn btn-primary" style="width:100%" onclick="projectLifestyle()">Run Projection</button>
+                <p id="futureMsg" class="small" style="margin-top:10px;"></p>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="card full">
+          <h3>Weekly Challenge Board</h3>
+          <ul class="list" id="weeklyChallenges"></ul>
         </div>
       </div>
     </div>
@@ -1210,105 +1302,78 @@
 
   <script>
     const tips = [
-      {
-        title: "Pay yourself first",
-        text: "Before spending on wants, move a small amount into savings. Even $10 or $20 builds the habit."
-      },
-      {
-        title: "Track before you cut",
-        text: "Do not guess where your money goes. Track it first, then decide what is worth changing."
-      },
-      {
-        title: "Small wins matter",
-        text: "Consistent saving usually beats random big efforts. A repeatable habit is stronger than motivation alone."
-      },
-      {
-        title: "Avoid silent leaks",
-        text: "The easiest money to save is often the money disappearing in small repeated purchases you barely notice."
-      },
-      {
-        title: "Time helps investing",
-        text: "The longer money stays invested, the more chance compounding has to do the heavy lifting."
-      },
-      {
-        title: "Goals beat guilt",
-        text: "A clear savings goal works better than vague pressure to ‘just spend less.’"
-      },
-      {
-        title: "Keep some flexibility",
-        text: "A strong budget should guide you, not trap you. Leave room for real life."
-      }
+      { title:"Pay yourself first", text:"Move a small amount into savings before spending on wants. Even a small amount builds the habit." },
+      { title:"Track before you cut", text:"Do not guess where your money goes. Track your spending first, then decide what should change." },
+      { title:"Small wins matter", text:"Consistent saving usually works better than random big efforts. Repetition beats motivation." },
+      { title:"Watch silent leaks", text:"Small repeated purchases can quietly slow your progress more than you think." },
+      { title:"Time matters a lot", text:"The earlier you start, the more time compounding has to help your money grow." },
+      { title:"Goals work better than guilt", text:"A clear target usually helps more than just telling yourself to spend less." },
+      { title:"Keep your budget flexible", text:"A good budget should guide you, not make real life impossible." }
     ];
 
-    const passContent = {
+    const passData = {
       Basic: {
-        title: "Basic Questions",
-        desc: "Answer quick questions to build stronger money habits.",
-        quiz: {
-          question: "Which habit usually helps savings grow faster?",
-          options: [
+        score:72,
+        goal:"Use the budget calculator and find one category where you can free up at least $25.",
+        reflection:"What is one purchase you made recently that felt worth it, and one purchase you would probably skip next time?",
+        weekly:[
+          "Track one spending category for 7 days.",
+          "Save before you spend at least once this week.",
+          "Write down one clear savings goal."
+        ],
+        quiz:{
+          question:"Which habit usually helps savings grow faster?",
+          options:[
             "Saving whatever is left at the end of the month",
             "Spending first, then checking your balance later",
             "Moving money to savings as soon as income arrives",
             "Ignoring small purchases because they do not matter"
           ],
-          correct: 2,
-          feedback: "Saving first usually makes progress more consistent because it happens before spending decisions."
-        },
-        reflection: "What is one purchase you made recently that felt worth it, and what is one that you would skip next time?",
-        preview: "Basic gives you the core tools to budget, save, and learn how money can grow over time.",
-        challenges: [
-          "Track one spending category for 7 days.",
-          "Save before you spend this week.",
-          "Write one money goal with a deadline."
-        ],
-        goal: "Use the budget calculator and find one place to free up at least $25."
+          correct:2,
+          feedback:"Saving first usually creates more consistency because it happens before spending decisions."
+        }
       },
       Pro: {
-        title: "Pro Reflection + Quiz",
-        desc: "More structure, smarter prompts, and stronger weekly discipline.",
-        quiz: {
-          question: "What is the smartest first step if you keep overspending every month?",
-          options: [
+        score:83,
+        goal:"Find your biggest spending trigger and create one rule that makes it easier to control.",
+        reflection:"What spending category is hardest for you to control, and what usually triggers that spending?",
+        weekly:[
+          "Review your last 5 purchases and label each as useful, optional, or regretted.",
+          "Set one mini savings target for the next 10 days.",
+          "Create one spending rule you will follow this week."
+        ],
+        quiz:{
+          question:"What is the smartest first step if you keep overspending every month?",
+          options:[
             "Invest more immediately",
             "Figure out which category keeps going over budget",
             "Stop checking your account",
             "Make a bigger goal but keep the same habits"
           ],
-          correct: 1,
-          feedback: "You need to identify the actual spending leak first. Clarity usually comes before improvement."
-        },
-        reflection: "What spending category is hardest for you to control, and what trigger usually causes that spending?",
-        preview: "Pro builds on Basic with weekly challenges, smarter behavior questions, and more planning prompts.",
-        challenges: [
-          "Review your last 5 purchases and label each as useful, optional, or regretted.",
-          "Set one mini savings target for the next 10 days.",
-          "Write one rule for spending that you will follow this week."
-        ],
-        goal: "Find your biggest spending trigger and make one rule that reduces it."
+          correct:1,
+          feedback:"You need to identify the actual spending leak first. Clarity usually comes before improvement."
+        }
       },
       Elite: {
-        title: "Elite Strategy Questions",
-        desc: "Think deeper about money decisions, long-term growth, and habit design.",
-        quiz: {
-          question: "Why is compounding powerful over long periods?",
-          options: [
+        score:93,
+        goal:"Write one long-term wealth goal and calculate the monthly action needed to move toward it.",
+        reflection:"If your future self looked at your money habits today, what would they thank you for changing now?",
+        weekly:[
+          "Design a 3-month money improvement plan.",
+          "Choose one long-term goal and break it into monthly targets.",
+          "Write 3 habits your future self would want you to keep."
+        ],
+        quiz:{
+          question:"Why is compounding powerful over long periods?",
+          options:[
             "Because your growth can begin earning growth too",
             "Because markets never go down",
             "Because risk disappears over time",
             "Because you do not need to contribute regularly"
           ],
-          correct: 0,
-          feedback: "Compounding matters because returns can build on prior returns, especially across many years."
-        },
-        reflection: "If your future self looked at your money habits today, what would they thank you for changing now?",
-        preview: "Elite adds deeper strategy prompts, stronger self-review, and more long-term wealth thinking.",
-        challenges: [
-          "Design a 3-month money improvement plan.",
-          "Choose one long-term goal and break it into monthly targets.",
-          "List three habits that future-you would want you to keep."
-        ],
-        goal: "Write one long-term financial goal and the exact monthly amount needed to reach it."
+          correct:0,
+          feedback:"Compounding matters because returns can build on prior returns, especially over many years."
+        }
       }
     };
 
@@ -1338,15 +1403,13 @@
       }
 
       let users = getUsers();
-      const exists = users.find(u => u.email === email);
-
-      if(exists){
+      if(users.find(u => u.email === email)){
         msg.className = 'small warning';
         msg.textContent = 'An account with that email already exists.';
         return;
       }
 
-      users.push({name, email, password, pass});
+      users.push({name,email,password,pass});
       setUsers(users);
 
       msg.className = 'small success';
@@ -1358,8 +1421,7 @@
       const password = document.getElementById('loginPassword').value.trim();
       const msg = document.getElementById('loginMsg');
 
-      const users = getUsers();
-      const user = users.find(u => u.email === email && u.password === password);
+      const user = getUsers().find(u => u.email === email && u.password === password);
 
       if(!user){
         msg.className = 'small error';
@@ -1377,7 +1439,7 @@
       localStorage.removeItem('wealthwiseCurrentUser');
       document.getElementById('dashboard').style.display = 'none';
       document.getElementById('publicSite').style.display = 'block';
-      window.scrollTo({top:0, behavior:'smooth'});
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
     function showDashboard(){
@@ -1393,14 +1455,94 @@
 
       setDailyTip();
       applyPassContent(user.pass);
-      window.scrollTo({top:0, behavior:'smooth'});
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
     function setDailyTip(){
-      const dayIndex = new Date().getDay();
-      const tip = tips[dayIndex % tips.length];
+      const tip = tips[new Date().getDay() % tips.length];
       document.getElementById('dailyTipTitle').textContent = tip.title;
       document.getElementById('dailyTipText').textContent = tip.text;
+    }
+
+    function applyPassContent(pass){
+      const data = passData[pass];
+      document.getElementById('todayGoal').textContent = data.goal;
+      document.getElementById('confidenceScore').textContent = data.score;
+      renderWeekly(data.weekly);
+
+      document.getElementById('basicReflection').textContent = passData.Basic.reflection;
+      document.getElementById('proReflection').textContent = passData.Pro.reflection;
+      document.getElementById('eliteReflection').textContent = passData.Elite.reflection;
+
+      renderQuiz('basic', passData.Basic.quiz);
+      renderQuiz('pro', passData.Pro.quiz);
+      renderQuiz('elite', passData.Elite.quiz);
+
+      switchPassView(pass, null, true);
+    }
+
+    function renderWeekly(items){
+      const ul = document.getElementById('weeklyChallenges');
+      ul.innerHTML = '';
+      items.forEach(item=>{
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+    }
+
+    function renderQuiz(prefix, quiz){
+      document.getElementById(prefix + 'QuizQuestion').textContent = quiz.question;
+      document.getElementById(prefix + 'QuizFeedback').textContent = '';
+
+      const box = document.getElementById(prefix + 'QuizOptions');
+      box.innerHTML = '';
+
+      quiz.options.forEach((opt,index)=>{
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(prefix,index,quiz.correct,quiz.feedback);
+        box.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(prefix, selected, correct, feedback){
+      const buttons = document.querySelectorAll('#' + prefix + 'QuizOptions .option-btn');
+      buttons.forEach((btn,i)=>{
+        btn.disabled = true;
+        if(i === correct) btn.classList.add('correct');
+        if(i === selected && i !== correct) btn.classList.add('wrong');
+      });
+
+      const el = document.getElementById(prefix + 'QuizFeedback');
+      if(selected === correct){
+        el.className = 'small success';
+        el.textContent = 'Correct. ' + feedback;
+      }else{
+        el.className = 'small warning';
+        el.textContent = 'Not quite. ' + feedback;
+      }
+    }
+
+    function switchPassView(pass, el, skipTabUpdate=false){
+      document.querySelectorAll('.pass-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(pass.toLowerCase() + 'Panel').classList.add('active');
+
+      document.getElementById('todayGoal').textContent = passData[pass].goal;
+      document.getElementById('confidenceScore').textContent = passData[pass].score;
+      renderWeekly(passData[pass].weekly);
+
+      if(!skipTabUpdate){
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        if(el) el.classList.add('active');
+      }else{
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        const passButtons = document.querySelectorAll('.tab');
+        if(pass === 'Basic') passButtons[0].classList.add('active');
+        if(pass === 'Pro') passButtons[1].classList.add('active');
+        if(pass === 'Elite') passButtons[2].classList.add('active');
+      }
     }
 
     function calculateBudget(){
@@ -1417,6 +1559,11 @@
       document.getElementById('budgetExpenses').textContent = '$' + expenses.toFixed(2);
       document.getElementById('budgetLeft').textContent = '$' + left.toFixed(2);
       document.getElementById('budgetSave').textContent = '$' + saveSuggestion.toFixed(2);
+
+      const splitBase = expenses || 1;
+      document.getElementById('splitHousing').textContent = ((rent / splitBase) * 100).toFixed(0) + '%';
+      document.getElementById('splitFood').textContent = ((food / splitBase) * 100).toFixed(0) + '%';
+      document.getElementById('splitOther').textContent = (((transport + other) / splitBase) * 100).toFixed(0) + '%';
     }
 
     function updateSavings(){
@@ -1428,6 +1575,7 @@
         document.getElementById('savingsRemaining').textContent = '$0';
         document.getElementById('savingsStatus').textContent = 'Enter a goal';
         document.getElementById('savingsBar').style.width = '0%';
+        document.getElementById('milestoneMessage').textContent = 'Start tracking your goal to unlock milestone messages.';
         return;
       }
 
@@ -1435,35 +1583,37 @@
       const remaining = Math.max(goal - current, 0);
 
       let status = 'Getting started';
-      if(percent >= 100) status = 'Goal reached';
-      else if(percent >= 75) status = 'Almost there';
-      else if(percent >= 40) status = 'Solid progress';
+      let milestone = 'Good start — the key is consistency.';
+      if(percent >= 100){
+        status = 'Goal reached';
+        milestone = 'Amazing — you hit your goal. Time to set the next one.';
+      } else if(percent >= 75){
+        status = 'Almost there';
+        milestone = 'You are close. Staying consistent now matters most.';
+      } else if(percent >= 40){
+        status = 'Solid progress';
+        milestone = 'Nice progress — you already built momentum.';
+      }
 
       document.getElementById('savingsPercent').textContent = percent.toFixed(1) + '%';
       document.getElementById('savingsRemaining').textContent = '$' + remaining.toFixed(2);
       document.getElementById('savingsStatus').textContent = status;
       document.getElementById('savingsBar').style.width = percent + '%';
+      document.getElementById('milestoneMessage').textContent = milestone;
     }
 
     function updateInvestmentSplit(){
       const stocks = Number(document.getElementById('stockSlider').value);
       const safe = 100 - stocks;
-
       document.getElementById('stockPercent').textContent = stocks + '%';
       document.getElementById('safePercent').textContent = safe + '%';
       document.getElementById('investBar').style.width = stocks + '%';
 
       let message = '';
-      if(stocks >= 80){
-        message = 'This mix is very growth-focused, which may bring bigger ups and downs.';
-      } else if(stocks >= 60){
-        message = 'This mix leans toward growth, balanced by some safer assets or cash.';
-      } else if(stocks >= 40){
-        message = 'This mix is more balanced between growth and stability.';
-      } else {
-        message = 'This mix is more conservative, with stronger emphasis on stability and lower volatility.';
-      }
-
+      if(stocks >= 80) message = 'This mix is very growth-focused, which can bring bigger ups and downs.';
+      else if(stocks >= 60) message = 'This mix leans toward growth while keeping some stability.';
+      else if(stocks >= 40) message = 'This mix is more balanced between growth and safety.';
+      else message = 'This mix is more conservative and focused more on stability.';
       document.getElementById('investMessage').textContent = message;
     }
 
@@ -1489,73 +1639,129 @@
       document.getElementById('compoundGrowth').textContent = '$' + growth.toFixed(2);
     }
 
-    function applyPassContent(pass){
-      const data = passContent[pass] || passContent.Basic;
-
-      document.getElementById('questionsTitle').textContent = data.title;
-      document.getElementById('questionsDesc').textContent = data.desc;
-      document.getElementById('reflectionText').textContent = data.reflection;
-      document.getElementById('passPreviewContent').textContent = data.preview;
-      document.getElementById('todayGoal').textContent = data.goal;
-
-      const ul = document.getElementById('weeklyChallenges');
-      ul.innerHTML = '';
-      data.challenges.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        ul.appendChild(li);
-      });
-
-      renderQuiz(data.quiz);
+    function saveCheckin(){
+      const text = document.getElementById('dailyCheckin').value.trim();
+      const msg = document.getElementById('checkinMsg');
+      if(!text){
+        msg.className = 'small warning';
+        msg.textContent = 'Write something first.';
+        return;
+      }
+      localStorage.setItem('wealthwiseCheckin', text);
+      msg.className = 'small success';
+      msg.textContent = 'Check-in saved.';
     }
 
-    function renderQuiz(quiz){
-      document.getElementById('quizQuestion').textContent = quiz.question;
-      document.getElementById('quizFeedback').textContent = '';
+    function updateHabitScore(){
+      const checks = document.querySelectorAll('.habitCheck');
+      let total = 0;
+      checks.forEach(c => { if(c.checked) total++; });
 
-      const optionsContainer = document.getElementById('quizOptions');
-      optionsContainer.innerHTML = '';
-
-      quiz.options.forEach((option, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = option;
-        btn.onclick = () => checkAnswer(index, quiz.correct, btn, quiz.feedback);
-        optionsContainer.appendChild(btn);
-      });
-    }
-
-    function checkAnswer(selected, correct, button, feedback){
-      const buttons = document.querySelectorAll('#quizOptions .option-btn');
-      buttons.forEach((btn, i) => {
-        btn.disabled = true;
-        if(i === correct) btn.classList.add('correct');
-        if(i === selected && i !== correct) btn.classList.add('wrong');
-      });
-
-      const feedbackEl = document.getElementById('quizFeedback');
-      if(selected === correct){
-        feedbackEl.className = 'small success';
-        feedbackEl.textContent = 'Correct. ' + feedback;
+      const msg = document.getElementById('habitMsg');
+      if(total === 3){
+        msg.className = 'small success';
+        msg.textContent = 'Excellent — you completed all 3 habit actions.';
+      } else if(total === 2){
+        msg.className = 'small success';
+        msg.textContent = 'Good job — 2 out of 3 habits completed.';
+      } else if(total === 1){
+        msg.className = 'small warning';
+        msg.textContent = 'Nice start — 1 habit completed. Keep going.';
       } else {
-        feedbackEl.className = 'small warning';
-        feedbackEl.textContent = 'Not quite. ' + feedback;
+        msg.className = 'small warning';
+        msg.textContent = 'No habits checked yet.';
       }
     }
 
-    function switchDashboardPass(pass, el){
-      document.querySelectorAll('.pass-chip').forEach(btn => btn.classList.remove('active'));
-      el.classList.add('active');
-      applyPassContent(pass);
+    function detectLeak(){
+      const category = document.getElementById('leakCategory').value;
+      const msg = document.getElementById('leakMsg');
+      msg.className = 'small';
+      msg.textContent = category + ' may become a leak when it is frequent, emotional, or automatic. Try adding a pause rule before spending.';
+    }
+
+    function planGoal(){
+      const goal = document.getElementById('proGoal').value.trim();
+      const months = Number(document.getElementById('proGoalMonths').value) || 0;
+      const msg = document.getElementById('goalPlanMsg');
+
+      if(!goal || months <= 0){
+        msg.className = 'small error';
+        msg.textContent = 'Enter a goal and a valid number of months.';
+        return;
+      }
+
+      const match = goal.match(/\$?(\d+)/);
+      if(match){
+        const amount = Number(match[1]);
+        const perMonth = amount / months;
+        msg.className = 'small success';
+        msg.textContent = `To work toward "${goal}," aim for about $${perMonth.toFixed(2)} per month.`;
+      } else {
+        msg.className = 'small success';
+        msg.textContent = `Good goal. Break "${goal}" into smaller monthly actions over ${months} months.`;
+      }
+    }
+
+    function calcNetWorth(){
+      const assets = Number(document.getElementById('assets').value) || 0;
+      const debts = Number(document.getElementById('debts').value) || 0;
+      const net = assets - debts;
+      const msg = document.getElementById('netWorthMsg');
+
+      msg.className = net >= 0 ? 'small success' : 'small warning';
+      msg.textContent = 'Estimated net worth: $' + net.toFixed(2);
+    }
+
+    function planEmergencyFund(){
+      const monthlyNeeds = Number(document.getElementById('monthlyNeeds').value) || 0;
+      const monthsCover = Number(document.getElementById('monthsCover').value) || 0;
+      const total = monthlyNeeds * monthsCover;
+      const msg = document.getElementById('emergencyMsg');
+
+      if(monthlyNeeds <= 0 || monthsCover <= 0){
+        msg.className = 'small error';
+        msg.textContent = 'Enter valid values first.';
+        return;
+      }
+
+      msg.className = 'small success';
+      msg.textContent = `Your emergency fund target would be about $${total.toFixed(2)}.`;
+    }
+
+    function projectLifestyle(){
+      const monthly = Number(document.getElementById('futureMonthlySave').value) || 0;
+      const years = Number(document.getElementById('futureYears').value) || 0;
+      const msg = document.getElementById('futureMsg');
+
+      if(monthly <= 0 || years <= 0){
+        msg.className = 'small error';
+        msg.textContent = 'Enter valid numbers first.';
+        return;
+      }
+
+      let balance = 0;
+      const monthlyRate = 0.08 / 12;
+      const months = years * 12;
+
+      for(let i = 0; i < months; i++){
+        balance = balance * (1 + monthlyRate) + monthly;
+      }
+
+      msg.className = 'small success';
+      msg.textContent = `At an example 8% annual return, this could grow to about $${balance.toFixed(2)} over ${years} years.`;
     }
 
     updateInvestmentSplit();
 
     window.onload = function(){
       const current = JSON.parse(localStorage.getItem('wealthwiseCurrentUser') || 'null');
-      if(current){
-        showDashboard();
+      const savedCheckin = localStorage.getItem('wealthwiseCheckin');
+      if(savedCheckin){
+        const box = document.getElementById('dailyCheckin');
+        if(box) box.value = savedCheckin;
       }
+      if(current) showDashboard();
     };
   </script>
 </body>
