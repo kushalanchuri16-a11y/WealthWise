@@ -84,6 +84,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 18px 0;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -103,6 +105,7 @@
       gap: 28px;
       list-style: none;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -201,6 +204,8 @@
       padding: 14px 22px;
       font-weight: 700;
       transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .primary-btn {
@@ -339,6 +344,7 @@
       height: 100%;
       background: linear-gradient(90deg, var(--green), var(--blue));
       border-radius: 999px;
+      transition: width 0.4s ease;
     }
 
     .section {
@@ -483,6 +489,79 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
 
+    .tool-box {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tool-box input[type="number"],
+    .tool-box input[type="email"],
+    .tool-box input[type="text"],
+    .tool-box input[type="range"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      outline: none;
+    }
+
+    .tool-box input::placeholder,
+    .signup-form input::placeholder {
+      color: #9fb3d9;
+    }
+
+    .tool-btn {
+      width: 100%;
+    }
+
+    .tool-result {
+      color: #d9e6f7;
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    .faq-list {
+      max-width: 850px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item {
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: white;
+      text-align: left;
+      padding: 20px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer p {
+      padding: 0 22px 20px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     .cta {
       text-align: center;
       padding: 40px;
@@ -505,6 +584,42 @@
       margin: 0 auto 24px;
       color: var(--muted);
       line-height: 1.8;
+    }
+
+    .signup-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .signup-form input {
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      outline: none;
+      min-width: 200px;
+    }
+
+    #successMessage {
+      display: none;
+      margin-top: 15px;
+      color: #38d39f;
+      font-weight: 600;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     footer {
@@ -546,7 +661,6 @@
       .nav-links {
         width: 100%;
         justify-content: center;
-        flex-wrap: wrap;
         gap: 14px;
       }
 
@@ -561,6 +675,16 @@
       .hero-stats {
         gap: 16px;
       }
+
+      .signup-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .signup-form input,
+      .signup-form button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -573,7 +697,9 @@
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#how">How It Works</a></li>
+          <li><a href="#tools">Tools</a></li>
           <li><a href="#why">Why Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#reviews">Reviews</a></li>
         </ul>
         <a href="#start" class="nav-btn">Get Started</a>
@@ -756,6 +882,64 @@
       </div>
     </section>
 
+    <section class="section" id="tools">
+      <div class="container">
+        <div class="section-header">
+          <span>Interactive Tools</span>
+          <h2>Try the platform experience</h2>
+          <p>
+            Explore simple tools that help beginners practice budgeting, savings, and investment thinking.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="icon">🧮</div>
+            <h3>Budget Calculator</h3>
+            <p>Enter your monthly numbers and see how much you can save.</p>
+
+            <div class="tool-box">
+              <input type="number" id="income" placeholder="Monthly income" />
+              <input type="number" id="expenses" placeholder="Monthly expenses" />
+              <button class="primary-btn tool-btn" onclick="calculateBudget()">Calculate</button>
+              <p class="tool-result" id="budgetResult">Your result will appear here.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🎯</div>
+            <h3>Savings Goal Tracker</h3>
+            <p>See how close you are to reaching your savings goal.</p>
+
+            <div class="tool-box">
+              <input type="number" id="goalAmount" placeholder="Savings goal" />
+              <input type="number" id="savedAmount" placeholder="Amount saved" />
+              <button class="primary-btn tool-btn" onclick="trackGoal()">Track Progress</button>
+
+              <div class="progress-bar" style="margin-top:16px;">
+                <div class="progress-fill" id="goalProgress" style="width:0%;"></div>
+              </div>
+              <p class="tool-result" id="goalResult">Progress will appear here.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Investment Split Demo</h3>
+            <p>Move the slider to see a sample beginner stock allocation.</p>
+
+            <div class="tool-box">
+              <label for="stockSlider" style="display:block; margin-bottom:10px; color:#d9e6f7;">
+                Stocks: <span id="stockPercent">60</span>%
+              </label>
+              <input type="range" id="stockSlider" min="0" max="100" value="60" oninput="updateAllocation()" />
+              <p class="tool-result" id="allocationResult">Stocks: 60% | Cash/Bonds: 40%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="why">
       <div class="container why-section">
         <div class="why-box">
@@ -778,6 +962,41 @@
             <li>Modern startup feel without being too complicated</li>
             <li>Built for students and young adults starting early</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span>FAQ</span>
+          <h2>Questions beginners usually ask</h2>
+          <p>
+            Click each question to expand the answer.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">What is a stock?</button>
+            <div class="faq-answer">
+              <p>A stock represents a small ownership share in a company.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">Why is budgeting important?</button>
+            <div class="faq-answer">
+              <p>Budgeting helps you control spending, save money, and plan for future goals.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">Do beginners need a lot of money to start learning?</button>
+            <div class="faq-answer">
+              <p>No. You can start by learning concepts, tracking spending, and practicing with simple examples.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -822,10 +1041,16 @@
         <div class="cta">
           <h2>Start building smarter money habits today</h2>
           <p>
-            Learn how to invest in stocks, create a better budget, and set savings goals with a platform
-            designed to make financial growth feel clear, modern, and possible.
+            Join WealthWise and begin learning how to invest, budget, and grow your money with confidence.
           </p>
-          <a href="#" class="primary-btn">Join WealthWise</a>
+
+          <form id="signupForm" class="signup-form">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <button type="submit" class="primary-btn">Join Now</button>
+          </form>
+
+          <p id="successMessage">✅ You're in! Welcome to WealthWise.</p>
         </div>
       </div>
     </section>
@@ -836,6 +1061,101 @@
       © 2026 WealthWise. Designed for a student business website project.
     </div>
   </footer>
+
+  <script>
+    const form = document.getElementById("signupForm");
+    const success = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      form.style.display = "none";
+      success.style.display = "block";
+    });
+
+    function calculateBudget() {
+      const income = Number(document.getElementById("income").value);
+      const expenses = Number(document.getElementById("expenses").value);
+      const result = document.getElementById("budgetResult");
+
+      if (!income || expenses < 0) {
+        result.textContent = "Please enter valid numbers.";
+        return;
+      }
+
+      const savings = income - expenses;
+
+      if (savings > 0) {
+        result.textContent = `You could save $${savings.toFixed(2)} this month.`;
+      } else if (savings === 0) {
+        result.textContent = "Your budget breaks even this month.";
+      } else {
+        result.textContent = `You are over budget by $${Math.abs(savings).toFixed(2)}.`;
+      }
+    }
+
+    function trackGoal() {
+      const goal = Number(document.getElementById("goalAmount").value);
+      const saved = Number(document.getElementById("savedAmount").value);
+      const result = document.getElementById("goalResult");
+      const bar = document.getElementById("goalProgress");
+
+      if (!goal || goal <= 0 || saved < 0) {
+        result.textContent = "Please enter valid numbers.";
+        bar.style.width = "0%";
+        return;
+      }
+
+      let percent = (saved / goal) * 100;
+      if (percent > 100) percent = 100;
+      if (percent < 0) percent = 0;
+
+      bar.style.width = percent + "%";
+      result.textContent = `You have completed ${percent.toFixed(1)}% of your savings goal.`;
+    }
+
+    function updateAllocation() {
+      const stockValue = document.getElementById("stockSlider").value;
+      const stockPercent = document.getElementById("stockPercent");
+      const result = document.getElementById("allocationResult");
+
+      stockPercent.textContent = stockValue;
+      result.textContent = `Stocks: ${stockValue}% | Cash/Bonds: ${100 - stockValue}%`;
+    }
+
+    const faqQuestions = document.querySelectorAll(".faq-question");
+
+    faqQuestions.forEach((question) => {
+      question.addEventListener("click", () => {
+        const answer = question.nextElementSibling;
+        const isOpen = answer.style.maxHeight;
+
+        document.querySelectorAll(".faq-answer").forEach((item) => {
+          item.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+    });
+
+    const revealElements = document.querySelectorAll(
+      ".feature-card, .step-card, .testimonial, .why-box, .cta, .faq-item"
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach((el) => {
+      el.classList.add("reveal");
+      observer.observe(el);
+    });
+  </script>
 
 </body>
 </html>
